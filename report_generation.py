@@ -13,7 +13,6 @@ def generate_excel_report(data, filename):
     with pd.ExcelWriter(filename, engine='xlsxwriter') as writer:
         data.to_excel(writer, sheet_name='Trading Data')
         worksheet = writer.sheets['Trading Data']
-        worksheet.set_column('A:A', 15)  # Set column width for Date
         worksheet.set_column('B:N', 12)  # Set column width for other columns
 
 def generate_pdf_report(data, filename):
