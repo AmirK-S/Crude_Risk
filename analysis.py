@@ -39,6 +39,10 @@ def calculate_metrics(df):
     expected_shortfall = df['Daily P&L'][df['Daily P&L'] <= var_95].mean()
     metrics['Expected Shortfall'] = expected_shortfall
     
+    # Additional Metrics
+    metrics['Mean Daily P&L'] = daily_returns.mean()
+    metrics['Volatility'] = daily_returns.std()
+    
     return metrics
 
 def markov_chain_analysis(df):
@@ -83,6 +87,7 @@ def main():
     symbol = 'CL=F'  # Futures symbol for Crude Oil
     start_date = '2020-02-20'
     end_date = '2024-02-20'
+    futures_contract_size = 1000  # Example contract size for futures
     
     results_folder = 'Results'
     if not os.path.exists(results_folder):
@@ -95,7 +100,7 @@ def main():
     df = apply_trading_strategy(df)
     
     # Simulate trades
-    df = simulate_trades(df)
+    df = simulate_trades(df, futures_contract_size)
     
     # Calculate metrics
     metrics = calculate_metrics(df)
@@ -116,8 +121,8 @@ def main():
     pdf_filename = os.path.join(results_folder, f"P&L_Report_{pdf_file_number}.pdf")
     
     # Generate reports
-    generate_excel_report(df, excel_filename)
-    generate_pdf_report(df, pdf_filename)
+    generate_excel_report(df, excel_filename, metrics)
+    generate_pdf_report(df, pdf_filename, metrics, transition_matrix)
 
     print(f"\nExcel Report generated: {excel_filename}")
     print(f"PDF Report generated: {pdf_filename}")
