@@ -83,9 +83,5 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 For any questions or suggestions, please contact:
 
-- **Author:** [Your Name]
-- **Email:** [your.email@example.com]
-
----
-
-Feel free to adjust the README based on specific details of your project or any additional features you might want to include.
+- **Author:** Amir KELLOU--SIDHOUM
+- **Email:** amirksmain@gmail.com
